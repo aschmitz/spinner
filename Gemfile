@@ -43,6 +43,7 @@ group :development, :test do
   gem 'sqlite3'
   
   # Use Capistrano for deployment
+  gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
 end
