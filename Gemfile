@@ -46,6 +46,7 @@ group :development, :test do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'capistrano-systemd-multiservice', require: false # For the daemon
 end
 
 group :development do
