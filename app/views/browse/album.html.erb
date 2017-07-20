@@ -1,0 +1,11 @@
+<% content_for(:title, "Album: #{@album['name']}") %>
+<h1>Album: <i><%= @album['name'] %></i></h1>
+
+<% if @album['images'] %>
+  <%= image_tag @album['images'].first, style: 'width: 256px; height: auto;' %>
+<% end %>
+
+<h2>Tracks</h2>
+<ul>
+  <%= render partial: 'track', collection: @tracks %>
+</ul>

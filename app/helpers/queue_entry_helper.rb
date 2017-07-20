@@ -1,0 +1,2 @@
+module QueueEntryHelper
+end

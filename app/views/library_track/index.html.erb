@@ -1,0 +1,7 @@
+<%= content_for(:title, 'Your Library') %>
+<h1>Your Library</h1>
+<ol>
+  <% @library_tracks.each do |library_track| %>
+    <li><%= library_track.track.title %></li>
+  <% end %>
+</ol>

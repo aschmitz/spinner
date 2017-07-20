@@ -1,0 +1,9 @@
+<li>
+  <%= link_to '[queue]', {action: 'queue', uri: track['uri']}, method: :post %>
+  "<%= track['name']%>"
+  (<%= length_text(track['length']) %>)
+  by <%= artists_to_text(track['artists']) %>
+  <% if track['album'] %>
+    on <i><%= album_link(track['album']) %></i>
+  <% end %>
+</li>

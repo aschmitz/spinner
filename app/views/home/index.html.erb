@@ -1,0 +1,11 @@
+<h1>Now Playing</h1>
+<%= render partial: 'nowplaying' %>
+
+<h1>Your Queue</h1>
+<%= render partial: 'queue' %>
+
+<h1>Search</h1>
+<%= form_tag '/search', {method: 'GET'} do %>
+  <%= text_field_tag 'q' %>
+  <%= submit_tag 'Search' %>
+<% end %>

@@ -1,0 +1,17 @@
+<%= content_for(:title, "Search: \"#{params[:q]}\"") %>
+<h1>Search: "<%= params[:q]%>"</h1>
+
+<h2>Tracks</h2>
+<ul>
+  <%= render partial: 'track', collection: @tracks %>
+</ul>
+
+<h2>Albums</h2>
+<ul>
+  <%= render partial: 'album', collection: @albums %>
+</ul>
+
+<h2>Artists</h2>
+<ul>
+  <%= render partial: 'artist', collection: @artists %>
+</ul>

@@ -1,0 +1,18 @@
+<%
+played_song = PlayedSong.order(played_at: :desc).where('played_at > ?', 1.hour.ago).first
+
+unless played_song %>
+Nothing.
+<% else
+  track = played_song.track %>
+  <% if (img = track.image) %>
+    <%= image_tag img, alt: track.title, style: 'width: 256px; height: auto;' %><br>
+  <% end %>
+  "<%= track.title %>"
+  (<%= length_text(track.details['length']) %>)
+  by <%= artists_to_text(track.details['artists']) %>
+  <% if track.details['album'] %>
+    on <i><%= album_link(track.details['album']) %></i>
+  <% end %><br>
+  Played by <%= played_song.user ? (played_song.user.name ? played_song.user.name : played_song.user.email) : '[unknown]' %>
+<% end %>

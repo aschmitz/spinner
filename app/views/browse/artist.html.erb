@@ -1,0 +1,10 @@
+<%= content_for(:title, 'Browse Artist') %>
+<h1>Browse Artist</h1>
+
+<h2>Albums</h2>
+<ul>
+  <% @albums.each do |album|
+    next if album['uri'][-4..-1] == ':all' %>
+    <li><%= link_to album['name'], action: 'album', id: album['uri'] %></li>
+  <% end %>
+</ul>

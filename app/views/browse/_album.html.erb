@@ -1,0 +1,4 @@
+<li>
+  <i><%= link_to album['name'], action: 'album', id: album['uri'] %></i>
+  by <%= artists_to_text(album['artists']) %>
+</li>
