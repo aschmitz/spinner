@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   end
   
   def update_user_presence
+    return unless current_user
+    
     current_user.last_present = Time.now
     current_user.save
   end
