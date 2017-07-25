@@ -107,7 +107,7 @@ namespace :spinner do
         end
       end
       
-      EM.add_periodic_timer(60, method(:periodic_check))
+      EM.add_periodic_timer(Rails.application.secrets.mopidy[:periodic_timer], method(:periodic_check))
       
       start_websocket
       periodic_check

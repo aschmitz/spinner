@@ -17,5 +17,5 @@
 
 // Note that we have the window open every two minutes.
 setInterval(function() {
-  $.get('/ping')
+  $.get('/home/ping')
 }, 2*60*1000)

@@ -9,3 +9,15 @@
   <%= text_field_tag 'q' %>
   <%= submit_tag 'Search' %>
 <% end %>
+
+<% if current_user.in_room %>
+  <h1>Not listening any more?</h1>
+  You can
+  <%= link_to 'mark yourself as gone', {action: 'presence', in_room: false}, method: :post %>
+  to not have your queue play.
+<% else %>
+  <h1>Listening again?</h1>
+  You can
+  <%= link_to 'mark yourself as around', {action: 'presence', in_room: true}, method: :post %>
+  to have your queue start playing again.
+<% end %>
