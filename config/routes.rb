@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/home/ping' => 'home#ping'
   post '/home/presence' => 'home#presence'
   get '/home/queue' => 'home#queue'
+  get '/home/recent' => 'home#recent'
   
   get '/search' => 'browse#search'
   get '/artist' => 'browse#artist'

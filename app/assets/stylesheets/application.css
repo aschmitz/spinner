@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+.album-twoline-image {
+  height: 2em;
+  width: auto;
+  float: left;
+  padding-right: 0.5em;
+}
+.album-twoline-image-square {
+  width: 2em;
+}
+
+.tracklist li {
+  clear: both;
+  margin: 0.5em 0;
+}
+
+time {
+  text-decoration: underline dotted;
+}

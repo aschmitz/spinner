@@ -1,0 +1,22 @@
+<ol class="tracklist">
+  <% PlayedSong.order(played_at: :desc).includes(:track).limit(30).each do |entry| %>
+    <li>
+      <% if entry.track.image %>
+        <%= image_tag entry.track.image, alt: nil, class: 'album-twoline-image' %>
+      <% else %>
+        <div class="album-twoline-image album-twoline-image-square"></div>
+      <% end %>
+      "<%= entry.track.title %>"
+      (<%= length_text(entry.track.details['length']) %>)
+      by <%= artists_to_text(entry.track.details['artists']) %>
+      <% if entry.track.details['album'] %>
+        on <i><%= album_link(entry.track.details['album']) %></i>
+      <% end %>
+      <br>
+      Queued by <%= user_display_name(entry.user) %>,
+      <time datetime="<%= entry.played_at %>" title="<%= entry.played_at %>">
+        <%= time_ago_in_words(entry.played_at) %> ago
+      </time>
+    </li>
+  <% end %>
+</ol>

@@ -27,4 +27,9 @@ module ApplicationHelper
     seconds = length / 1000
     sprintf('%d:%02d', seconds / 60, seconds % 60)
   end
+  
+  def user_display_name(user)
+    return '[unknown]' unless user
+    user.name || user.email
+  end
 end

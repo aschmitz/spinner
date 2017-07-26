@@ -14,5 +14,5 @@ Nothing.
   <% if track.details['album'] %>
     on <i><%= album_link(track.details['album']) %></i>
   <% end %><br>
-  Played by <%= played_song.user ? (played_song.user.name ? played_song.user.name : played_song.user.email) : '[unknown]' %>
+  Played by <%= user_display_name(played_song.user) %>
 <% end %>
