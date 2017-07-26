@@ -14,9 +14,13 @@
       <% end %>
       <br>
       Queued by <%= user_display_name(entry.user) %>,
-      <time datetime="<%= entry.played_at %>" title="<%= entry.played_at %>">
-        <%= time_ago_in_words(entry.played_at) %> ago
-      </time>
+      <% if entry.played_at %>
+        <time datetime="<%= entry.played_at %>" title="<%= entry.played_at %>">
+          <%= time_ago_in_words(entry.played_at) %> ago
+        </time>
+      <% else %>
+        some time ago
+      <% end %>
     </li>
   <% end %>
 </ol>
