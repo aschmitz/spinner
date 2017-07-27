@@ -8,6 +8,7 @@
 /.bundle
 
 # Ignore sensitive files.
+/config/cable.yml
 /config/database.yml
 /config/secrets.yml
 /config/deploy/production.rb

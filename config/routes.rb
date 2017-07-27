@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
+  mount ActionCable.server => '/cable'
   
   get '/home/nowplaying' => 'home#nowplaying'
   get '/home/ping' => 'home#ping'

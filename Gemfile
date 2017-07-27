@@ -32,6 +32,7 @@ gem 'devise' # Authentication
 gem 'faye-websocket' # Websocket client
 gem 'jsonrpc-client' # Mopidy JSON-RPC access
 gem 'jquery-rails' # Lazy web interface development
+gem 'redis' # ActionCable support
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

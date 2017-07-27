@@ -54,6 +54,9 @@ namespace :spinner do
                 # It is. Turn it into a track we've played, then queue the
                 # next track.
                 qe.turn_into_played_song!
+                ActionCable.server.broadcast('room_channel', {
+                  event: 'nowplaying_change',
+                })
                 
                 next_qe = QueueEntry.next_up
                 if next_qe

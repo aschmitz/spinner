@@ -1,9 +1,13 @@
 <h1>Now Playing</h1>
 <p>(You can also see <%= link_to 'recent songs', action: 'recent' %>.)</p>
-<%= render partial: 'nowplaying' %>
+<div id="now_playing">
+  <%= render partial: 'nowplaying' %>
+</div>
 
 <h1>Your Queue</h1>
-<%= render partial: 'queue' %>
+<div id="your_queue">
+  <%= render partial: 'queue' %>
+</div>
 
 <h1>Search</h1>
 <%= form_tag '/search', {method: 'GET'} do %>
