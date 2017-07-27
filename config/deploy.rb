@@ -21,7 +21,10 @@ set :deploy_to, '/var/www/spinner'
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, 'config/database.yml', 'config/secrets.yml', 'Passengerfile.json'
+append :linked_files, 'config/cable.yml',
+  'config/database.yml',
+  'config/secrets.yml',
+  'Passengerfile.json'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp', 'public/system'
