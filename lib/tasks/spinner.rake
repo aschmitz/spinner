@@ -51,17 +51,15 @@ namespace :spinner do
               # A track started to play, see if it's one of ours.
               tlid = message['tl_track']['tlid']
               if (qe = QueueEntry.find_by(tlid: tlid))
-                # It is. Turn it into a track we've played, then queue the
-                # next track.
+                # It is. Turn it into a track we've played, which will also
+                # queue the next song as a side effect (we delete this queue
+                # entry, which then triggers a next-song update).
                 qe.turn_into_played_song!
+                
+                # Tell everyone the current song playing changed.
                 ActionCable.server.broadcast('room_channel', {
                   event: 'nowplaying_change',
                 })
-                
-                next_qe = QueueEntry.next_up
-                if next_qe
-                  next_qe.add_to_mopidy!
-                end
               end
             end
             
