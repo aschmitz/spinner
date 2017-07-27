@@ -7,7 +7,7 @@ App.room = App.cable.subscriptions.create('RoomChannel', {
     switch (msg.event) {
       case 'nowplaying_change':
         // This does nothing if #now_playing isn't on the page, which is nice.
-        $('#now_playing').load('/home/now_playing');
+        $('#now_playing').load('/home/nowplaying');
         break;
       default:
         console.log('Unknown event from room:', msg);

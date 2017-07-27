@@ -2,6 +2,8 @@ class QueueEntry < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :track
   before_create :set_sequence
+  after_save :notify_user_of_queue_change
+  after_destroy :notify_user_of_queue_change
   
   def self.next_up
     # We want to find queue entries for users who have defined themselves as
@@ -71,7 +73,14 @@ class QueueEntry < ApplicationRecord
     ps
   end
   
+  protected
   def set_sequence
     self.sequence = (QueueEntry.where(user: user).maximum(:sequence) || 0) + 1
+  end
+  
+  def notify_user_of_queue_change
+    ActionCable.server.broadcast("queue_channel_#{user.id}", {
+      event: 'change',
+    })
   end
 end
