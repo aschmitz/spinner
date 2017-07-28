@@ -2,7 +2,7 @@
   <%= button_to 'queue', {
     controller: 'queue_entry',
     action: 'create',
-    uri: track['uri']
+    uri: track['uri'],
   }, form_class: 'form-inline' %>
   "<%= track['name']%>"
   (<%= length_text(track['length']) %>)

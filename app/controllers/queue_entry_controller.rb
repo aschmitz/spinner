@@ -15,6 +15,13 @@ class QueueEntryController < ApplicationController
       queue_track(track)
       
       render plain: 'ok'
+    elsif (album_uri = params[:album_uri])
+      tracks = MopidyClient.instance.invoke('core.library.lookup', [album_uri])
+      tracks.each do |track_tl|
+        track = Track.from_uri(track_tl['uri'])
+        queue_track(track)
+      end
+      render plain: 'okay'
     else
       render plain: "Couldn't figure out what you intended."
     end
