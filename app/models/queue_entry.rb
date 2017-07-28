@@ -30,7 +30,7 @@ class QueueEntry < ApplicationRecord
   def self.fix_next!
     # Do we have any queue entries that we have queued? There should be at most
     # one.
-    queued = QueueEntry.where.not(tlid:nil)
+    queued = QueueEntry.where.not(tlid: nil)
     if queued.count > 1
       # Just unqueue them all and sort it out in a moment.
       queued.map(&:remove_from_mopidy!)
@@ -62,10 +62,12 @@ class QueueEntry < ApplicationRecord
     next_queue_entry.add_to_mopidy!
     
     # 2. Check to see if the wrong song (`queued`) is currently playing.
-    current_tlid = MopidyClient.instance.invoke('core.tracklist.index')
-    if queued.tlid == current_tlid
-      # 2a. If so, play the next song.
-      MopidyClient.instance.invoke('core.playback.next')
+    if queued
+      current_tlid = MopidyClient.instance.invoke('core.tracklist.index')
+      if queued.tlid == current_tlid
+        # 2a. If so, play the next song.
+        MopidyClient.instance.invoke('core.playback.next')
+      end
     end
     
     # 3. Delete the wrong song from the queue.
