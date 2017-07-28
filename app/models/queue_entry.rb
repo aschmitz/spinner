@@ -68,10 +68,10 @@ class QueueEntry < ApplicationRecord
         # 2a. If so, play the next song.
         MopidyClient.instance.invoke('core.playback.next')
       end
+      
+      # 3. Delete the wrong song from the queue.
+      queued.remove_from_mopidy!
     end
-    
-    # 3. Delete the wrong song from the queue.
-    queued.remove_from_mopidy!
   end
   
   def add_to_mopidy!
