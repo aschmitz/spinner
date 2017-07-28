@@ -2,9 +2,10 @@ class QueueEntry < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :track
   before_create :set_sequence
+  before_destroy :remove_from_mopidy!
   after_save :notify_user_of_queue_change
   after_destroy :notify_user_of_queue_change
-  after_destroy :remove_and_update_queue
+  after_destroy :update_queue
   
   def self.next_up
     # We want to find queue entries for users who have defined themselves as
@@ -96,7 +97,7 @@ class QueueEntry < ApplicationRecord
     return false unless self.tlid
     
     res = MopidyClient.instance.invoke('core.tracklist.remove', [{tlid: [self.tlid]}]).first
-    # If there was an error, the track probably wasn't in the list anyway.
+    return false unless res && res['__model__'] == 'TlTrack'
     
     self.tlid = nil
     save
@@ -140,8 +141,7 @@ class QueueEntry < ApplicationRecord
     })
   end
   
-  def remove_and_update_queue
-    self.remove_from_mopidy!
+  def update_queue
     QueueEntry.fix_next!
   end
 end
