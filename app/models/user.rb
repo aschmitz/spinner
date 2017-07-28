@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :played_songs
   has_many :queue_entries
   
-  before_save :fix_next_track, if: :in_room_changed?
+  after_save :fix_next_track, if: :in_room_changed?
   
   PRESENCE_TIMEOUT = 5.minutes
   
