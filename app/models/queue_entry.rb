@@ -106,6 +106,8 @@ class QueueEntry < ApplicationRecord
   
   # This destructively turns this queue entry into a PlayedSong record.
   def turn_into_played_song!
+    return false unless self.tlid
+    
     ps = PlayedSong.create(
       track: self.track,
       user: self.user,
