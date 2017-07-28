@@ -26,7 +26,6 @@ class BrowseController < ApplicationController
     
     @tracks = MopidyClient.instance.invoke('core.library.lookup', [uri])
     @album = @tracks.first['album']
-    # render plain: @tracks.to_yaml
   end
   
   def artist
@@ -35,7 +34,6 @@ class BrowseController < ApplicationController
     render plain: 'No artist' unless uri
     
     @albums = MopidyClient.instance.invoke('core.library.browse', [uri])
-    # render plain: @res.to_yaml
   end
   
   def queue
@@ -51,12 +49,5 @@ class BrowseController < ApplicationController
     QueueEntry.create(user: current_user, track: track)
     
     render plain: 'ok'
-    
-    # res = MopidyClient.instance.invoke('core.tracklist.add', [nil, nil, nil, [params[:uri]]])
-    # if res.first['__model__'] == 'TlTrack'
-    #   render plain: 'success'
-    # else
-    #   render plain: 'error'
-    # end
   end
 end

@@ -1,6 +1,13 @@
 <%= content_for(:title, "Search: \"#{params[:q]}\"") %>
 <h1>Search: "<%= params[:q]%>"</h1>
 
+<% if params[:q].include?(':') %>
+<p>
+  Was that a URL? It it was an MP3 or a YouTube URL, you can try just
+  <%= link_to 'adding it to the queue', {action: 'queue', uri: params[:q]}, method: :post %>.
+</p>
+<% end %>
+
 <h2>Tracks</h2>
 <ul>
   <%= render partial: 'track', collection: @tracks %>
