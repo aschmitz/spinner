@@ -1,5 +1,9 @@
 <li>
-  <%= link_to '[queue]', {action: 'queue', uri: track['uri']}, method: :post %>
+  <%= button_to 'queue', {
+    controller: 'queue_entry',
+    action: 'create',
+    uri: track['uri']
+  }, form_class: 'form-inline' %>
   "<%= track['name']%>"
   (<%= length_text(track['length']) %>)
   by <%= artists_to_text(track['artists']) %>

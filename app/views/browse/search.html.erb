@@ -3,8 +3,13 @@
 
 <% if params[:q].include?(':') %>
 <p>
-  Was that a URL? It it was an MP3 or a YouTube URL, you can try just
-  <%= link_to 'adding it to the queue', {action: 'queue', uri: params[:q]}, method: :post %>.
+  Was that a URI? It it was an MP3 or a YouTube URL, you can try just adding it
+  to the queue:
+  <%= button_to 'Add URI to Queue', {
+    controller: 'queue_entry',
+    action: 'create',
+    uri: track['uri']
+  }, form_class: 'form-inline' %>
 </p>
 <% end %>
 

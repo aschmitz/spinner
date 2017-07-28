@@ -29,6 +29,10 @@
   margin: 0.5em 0;
 }
 
+.form-inline form, form.form-inline {
+  display: inline;
+}
+
 time {
   text-decoration: underline dotted;
 }

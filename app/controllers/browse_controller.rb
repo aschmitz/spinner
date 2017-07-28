@@ -35,19 +35,4 @@ class BrowseController < ApplicationController
     
     @albums = MopidyClient.instance.invoke('core.library.browse', [uri])
   end
-  
-  def queue
-    uri = params[:uri]
-    render plain: 'No URI' unless uri
-    
-    track = Track.from_uri(uri)
-    
-    # Add this to the user's library if it didn't already exist there
-    LibraryTrack.where(user: current_user, track: track).first_or_create
-    
-    # Add this to the user's queue
-    QueueEntry.create(user: current_user, track: track)
-    
-    render plain: 'ok'
-  end
 end
