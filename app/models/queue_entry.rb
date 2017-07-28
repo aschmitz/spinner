@@ -117,11 +117,14 @@ class QueueEntry < ApplicationRecord
     )
     
     # This prevents us from removing this track from Mopidy when we go to
-    # remove queued-then-deleted tracks from Mopidy.
-    self.tlid = nil
-    self.save
-    
-    self.destroy
+    # remove queued-then-deleted tracks from Mopidy. Even so, we don't do this
+    # if we're already in the middle of destroying this QueueEntry.
+    unless destroyed?
+      self.tlid = nil
+      self.save
+      
+      self.destroy
+    end
     
     ps
   end
