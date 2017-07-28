@@ -50,7 +50,7 @@ class QueueEntry < ApplicationRecord
     # playing, and this turns out to be a bit of a race condition, so we solve
     # that by doing the following:
     # 
-    # 1. Queue the "real" next song.
+    # 1. Queue the "real" next song (if any).
     # 2. Check to see if the wrong song (`queued`) is currently playing.
     # 2a. If so, play the next song.
     # 3. Delete the wrong song from the queue.
@@ -58,8 +58,8 @@ class QueueEntry < ApplicationRecord
     # (Thanks to Surinna for coming up with this procedure.)
     
     # So then:
-    # 1. Queue the "real" next song.
-    next_queue_entry.add_to_mopidy!
+    # 1. Queue the "real" next song (if any).
+    next_queue_entry.add_to_mopidy! if next_queue_entry
     
     # 2. Check to see if the wrong song (`queued`) is currently playing.
     if queued
@@ -96,9 +96,7 @@ class QueueEntry < ApplicationRecord
     return false unless self.tlid
     
     res = MopidyClient.instance.invoke('core.tracklist.remove', [{tlid: [self.tlid]}]).first
-    unless res['__model__'] == 'TlTrack'
-      raise 'Unexpected response type: '+res['__model__']
-    end
+    # If there was an error, the track probably wasn't in the list anyway.
     
     self.tlid = nil
     save
