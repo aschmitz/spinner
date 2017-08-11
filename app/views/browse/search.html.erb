@@ -8,7 +8,7 @@
   <%= button_to 'Add URI to Queue', {
     controller: 'queue_entry',
     action: 'create',
-    uri: track['uri'],
+    uri: params[:q],
   }, form_class: 'form-inline' %>
 </p>
 <% end %>
