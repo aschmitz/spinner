@@ -1,6 +1,6 @@
 module ApplicationHelper
   def artists_to_text(artists)
-    '[unknown]' unless artists
+    '[unknown]' unless artists.respond_to?(:map)
     
     artists.map do |artist|
       if artist['uri']
