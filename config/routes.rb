@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/home/presence' => 'home#presence'
   get '/home/queue' => 'home#queue'
   get '/home/recent' => 'home#recent'
+  post '/home/skip_my_song' => 'home#skip_my_song'
   
   get '/search' => 'browse#search'
   get '/artist' => 'browse#artist'

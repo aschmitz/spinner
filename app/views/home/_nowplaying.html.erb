@@ -15,4 +15,11 @@ Nothing.
     on <i><%= album_link(track.details['album']) %></i>
   <% end %><br>
   Played by <%= user_display_name(played_song.user) %>
+  <% if played_song.user == current_user %>
+    (you can
+      <%= button_to 'skip your own song', {
+        controller: 'home',
+        action: 'skip_my_song',
+      }, form_class: 'form-inline' %>)
+  <% end %>
 <% end %>
