@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   
   resources :library_track
   resources :queue_entry
+  resources :rating
 end

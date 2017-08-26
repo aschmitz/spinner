@@ -1,4 +1,6 @@
 class Track < ApplicationRecord
+  has_many :ratings
+  
   store :details, coder: JSON
   validates :uri, uniqueness: true
   

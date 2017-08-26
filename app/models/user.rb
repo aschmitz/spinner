@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :library_tracks
   has_many :played_songs
   has_many :queue_entries
+  has_many :ratings
   
   after_save :fix_next_track, if: -> { saved_change_to_attribute?(:in_room) }
   

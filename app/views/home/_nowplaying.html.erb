@@ -21,5 +21,19 @@ Nothing.
         controller: 'home',
         action: 'skip_my_song',
       }, form_class: 'form-inline' %>)
+  <% end %><br>
+  <% if (rating = Rating.find_by(user: current_user, track: track)) %>
+    You said this track was <%= Rating::SCORE_TO_TEXT[rating.score] %>. 
+    <%= button_to 'Take it back?', rating, method: 'delete', form_class: 'form-inline' %>
+  <% else %>
+    How is it?
+    <% (-1..1).each do |score| %>
+      <%= button_to Rating::SCORE_TO_TEXT[score], {
+        controller: 'rating',
+        action: 'create',
+        track_id: track.id,
+        score: score,
+      }, form_class: 'form-inline' %>
+    <% end %>
   <% end %>
 <% end %>
