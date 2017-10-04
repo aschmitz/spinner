@@ -105,6 +105,7 @@ namespace :spinner do
           # Not much we can do, but we shouldn't necessarily bail just because
           # of a timeout.
           puts e.inspect
+          puts e.backtrace
         end
       end
       
