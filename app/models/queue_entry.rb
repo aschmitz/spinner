@@ -4,6 +4,7 @@ class QueueEntry < ApplicationRecord
   before_create :set_sequence
   before_destroy :remove_from_mopidy!
   after_save :notify_user_of_queue_change
+  after_save :update_queue
   after_destroy :notify_user_of_queue_change
   after_destroy :update_queue
   
