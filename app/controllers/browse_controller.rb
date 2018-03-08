@@ -21,18 +21,19 @@ class BrowseController < ApplicationController
   
   def album
     uri = params[:id]
-    uri.gsub!(/^gmusic:album:([^B])/, 'gmusic:album:B\\1') # Fix for Google Play URI issue
     render plain: 'No album' unless uri
+    prefix_uri = uri.gsub(/^gmusic:album:([^B])/, 'gmusic:album:B\\1') # Fix for Google Play URI issue
+    @tracks = MopidyClient.instance.invoke('core.library.lookup', [prefix_uri])
+    @tracks = MopidyClient.instance.invoke('core.library.lookup', [uri]) if @tracks.empty?
     
-    @tracks = MopidyClient.instance.invoke('core.library.lookup', [uri])
     @album = @tracks.first['album']
   end
   
   def artist
     uri = params[:id]
-    uri.gsub!(/^gmusic:artist:([^A])/, 'gmusic:artist:A\\1') # Fix for Google Play URI issue
     render plain: 'No artist' unless uri
-    
-    @albums = MopidyClient.instance.invoke('core.library.browse', [uri])
+    prefix_uri = uri.gsub(/^gmusic:artist:([^A])/, 'gmusic:artist:A\\1') # Fix for Google Play URI issue
+    @albums = MopidyClient.instance.invoke('core.library.browse', [prefix_uri])
+    @albums = MopidyClient.instance.invoke('core.library.browse', [uri]) if @albums.empty?
   end
 end
