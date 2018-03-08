@@ -4,7 +4,7 @@ module ApplicationHelper
     
     artists.map do |artist|
       if artist['uri']
-        link_to(h(artist['name']), controller: 'browse', action: 'artist', id: uri)
+        link_to(h(artist['name']), controller: 'browse', action: 'artist', id: artist['uri'])
       else
         h(artist['name'])
       end
@@ -13,7 +13,7 @@ module ApplicationHelper
   
   def album_link(album)
     if album['uri']
-      link_to(h(album['name']), controller: 'browse', action: 'album', id: uri).html_safe
+      link_to(h(album['name']), controller: 'browse', action: 'album', id: album['uri']).html_safe
     else
       h(album['name']).html_safe
     end
