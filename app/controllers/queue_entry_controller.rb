@@ -11,9 +11,19 @@ class QueueEntryController < ApplicationController
   
   def create
     if (uri = params[:uri])
-      track = Track.from_uri(uri)
-      queue_track(track)
-      
+      #Allow for uri[] syntax in the query string to queue a list of tracks
+      if (uri.is_a? Array)
+        uri.each do |track_uri|
+          track = Track.from_uri(track_uri)
+          queue_track(track)
+        end
+        render plain: "ok queued " + uri.length
+        return #I don't like that this return has to be here, but its nice to print the count back?
+      #Otherwise we do the classic single song queue
+      else
+        track = Track.from_uri(uri)
+        queue_track(track)
+      end
       render plain: 'ok'
     elsif (album_uri = params[:album_uri])
       tracks = MopidyClient.instance.invoke('core.library.lookup', [album_uri])
