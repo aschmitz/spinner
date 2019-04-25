@@ -12,6 +12,7 @@
       action: 'create',
       album_uri: @album['uri'],
     },
+    remote: true,
     form_class: 'form-inline',
     data: { confirm: "Do you want to queue the entire \"#{@album['name']}\" album?"}
   %>

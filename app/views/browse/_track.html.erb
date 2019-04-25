@@ -3,7 +3,8 @@
     controller: 'queue_entry',
     action: 'create',
     uri: track['uri'],
-  }, form_class: 'form-inline' %>
+  }, form_class: 'form-inline',
+  remote: true  %>
   "<%= track['name']%>"
   (<%= length_text(track['length']) %>)
   by <%= artists_to_text(track['artists']) %>
