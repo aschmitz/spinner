@@ -14,6 +14,11 @@
  *= require_self
  */
 
+body {
+  margin: 0;
+  padding: 0.5em;
+}
+
 .album-twoline-image {
   height: 2em;
   width: auto;
@@ -35,4 +40,29 @@
 
 time {
   text-decoration: underline dotted;
+}
+
+#toast {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: 1em;
+  padding: .5em;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #bbb;
+  border-bottom: 1px solid black; 
+}
+
+#toast.hidden {
+  display: none;
+}
+
+#toast.success {
+  background-color: #0d8;
+}
+
+#toast.error {
+  background-color: #d44;
 }
