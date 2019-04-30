@@ -10,12 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
-
-// Note that we have the window open every two minutes.
-setInterval(function() {
-  $.get('/home/ping')
-}, 2*60*1000)
+////= require jquery3
+////= require jquery_ujs
+////= require turbolinks
+////= require_tree .
