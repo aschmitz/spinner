@@ -1,3 +1,5 @@
+let App = require('../cable');
+
 App.queue = App.cable.subscriptions.create('QueueChannel', {
   connected: function() {},
   disconnected: function() {},
