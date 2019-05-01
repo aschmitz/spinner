@@ -27,7 +27,7 @@ append :linked_files, 'config/cable.yml',
   'Passengerfile.json'
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'log', 'tmp', 'public/system'
+append :linked_dirs, 'log', 'tmp', 'public/system', 'node_modules'
 
 # Default value for default_env is {}
 # set :default_env, { path: '/opt/ruby/bin:$PATH' }
