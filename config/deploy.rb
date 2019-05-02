@@ -5,7 +5,7 @@ set :application, 'spinner'
 set :repo_url, 'https://github.com/aschmitz/spinner'
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, ENV.fetch('GIT_BRANCH', 'master')
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/spinner'
