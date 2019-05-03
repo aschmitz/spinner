@@ -5,8 +5,8 @@ class BrowseController < ApplicationController
     render plain: 'No query' unless query
     
     batches = MopidyClient.instance.invoke('core.library.search', [
-      {'any' => query},
-      ['gmusic:directory']
+      {'any' => [query]},
+      ['gmusic:']
     ])
     
     @artists = []
