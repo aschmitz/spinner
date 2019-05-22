@@ -16,13 +16,15 @@
 <% end %>
 
 <% if current_user.in_room %>
-  <h1>Not listening any more?</h1>
+  <h2>Not listening any more?</h2>
   You can
   <%= link_to 'mark yourself as gone', {action: 'presence', in_room: false}, method: :post %>
   to not have your queue play.
 <% else %>
-  <h1>Listening again?</h1>
+  <h2>Listening again?</h2>
   You can
   <%= link_to 'mark yourself as around', {action: 'presence', in_room: true}, method: :post %>
   to have your queue start playing again.
 <% end %>
+<br />
+<%= link_to 'Edit account', edit_user_registration_path %>

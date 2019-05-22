@@ -1,13 +1,14 @@
-<ol>
-  <% QueueEntry.where(user: current_user).order(sequence: :asc).includes(:track).each do |entry| %>
-    <li>
-      <%= button_to 'x', entry,
+<ol class='queue'>
+  <% QueueEntry.where(user: current_user).order(sequence: :asc).includes(:track).each_with_index do |entry, idx| %>
+    <li class='queue-entry'>
+      <%= link_to '❌', entry,
+        title: 'Remove song',
         method: :delete,
-        form_class: 'form-inline',
+        class: 'queue-entry-action',
         data: { confirm: "Are you sure you want to remove \"#{entry.track.title}\" from your queue?" }
       %>
       <% if entry.track.image %>
-        <%= image_tag entry.track.image, alt: nil, style: 'height: 1em; width: auto;' %>
+        <%= image_tag entry.track.image, alt: nil, class: 'queue-entry-art' %>
       <% else %>
         <div style="display: inline; height: 1em; width: 1em;"></div>
       <% end %>
