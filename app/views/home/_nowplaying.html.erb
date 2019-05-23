@@ -14,7 +14,7 @@ Nothing.
   <% if track.details['album'] %>
     on <i><%= album_link(track.details['album']) %></i>
   <% end %><br>
-  Played by <%= user_display_name(played_song.user) %>
+  Played by <b><%= user_display_name(played_song.user) %></b>
   <% if played_song.user == current_user %>
     (you can
       <%= button_to 'skip your own song', {
