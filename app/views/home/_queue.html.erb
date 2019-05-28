@@ -12,7 +12,10 @@
       <% else %>
         <div style="display: inline; height: 1em; width: 1em;"></div>
       <% end %>
-      <%= entry.track.title %>
+      <div class="queue-entry__track-info">
+        <div class="queue-entry__track-title"><%= entry.track.title %> (<%= length_text(entry.track.details['length']) %>)</div>
+        <div class="queue-entry__track-details"><em><%= album_link(entry.track.details['album']) %></em> by <%= artists_to_text(entry.track.details['artists']) %></div>
+      </div>
     </li>
   <% end %>
 </ol>

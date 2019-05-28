@@ -6,34 +6,50 @@ Nothing.
 <% else
   track = played_song.track %>
   <% if (img = track.image) %>
-    <%= image_tag img, alt: track.title, style: 'width: 256px; height: auto;' %><br>
+    <%= image_tag img, alt: track.title, class: 'now-playing__album-cover' %>
   <% end %>
-  "<%= track.title %>"
-  (<%= length_text(track.details['length']) %>)
-  by <%= artists_to_text(track.details['artists']) %>
-  <% if track.details['album'] %>
-    on <i><%= album_link(track.details['album']) %></i>
-  <% end %><br>
-  Played by <b><%= user_display_name(played_song.user) %></b>
-  <% if played_song.user == current_user %>
-    (you can
-      <%= button_to 'skip your own song', {
-        controller: 'home',
-        action: 'skip_my_song',
-      }, form_class: 'form-inline' %>)
-  <% end %><br>
-  <% if (rating = Rating.find_by(user: current_user, track: track)) %>
-    You said this track was <%= Rating::SCORE_TO_TEXT[rating.score] %>. 
-    <%= button_to 'Take it back?', rating, method: 'delete', form_class: 'form-inline' %>
-  <% else %>
-    How is it?
-    <% (-1..1).each do |score| %>
-      <%= button_to Rating::SCORE_TO_TEXT[score], {
-        controller: 'rating',
-        action: 'create',
-        track_id: track.id,
-        score: score,
-      }, form_class: 'form-inline' %>
+  <div class="now-playing__track-info">
+    <div class="now-playing__track-title-line">
+      <span class="now-playing__track-info__title">
+        <%= track.title %>
+      </span>
+      <span class="now-playing__track-info__length">
+        (<%= length_text(track.details['length']) %>)
+      </span>
+    </div>
+    <div class="now-playing__track-info-line">
+      <% if track.details['album'] %>
+        <span class="now-playing__track-info__album">
+          <i><%= album_link(track.details['album']) %></i>
+        </span>
+      <% end %>
+      <span class="now-playing__track-info__artist">
+        by <%= artists_to_text(track.details['artists']) %>
+      </span>
+    </div>
+    <div class="now-playing__track-info__played-by">
+      Played by <b><%= user_display_name(played_song.user) %></b>
+      <% if played_song.user == current_user %>
+        (you can
+          <%= button_to 'skip your own song', {
+            controller: 'home',
+            action: 'skip_my_song',
+          }, form_class: 'form-inline' %>)
+      <% end %>
+    </div>
+    <% if (rating = Rating.find_by(user: current_user, track: track)) %>
+      You said this track was <%= Rating::SCORE_TO_TEXT[rating.score] %>. 
+      <%= button_to 'Take it back?', rating, method: 'delete', form_class: 'form-inline' %>
+    <% else %>
+      How is it?
+      <% (-1..1).each do |score| %>
+        <%= button_to Rating::SCORE_TO_TEXT[score], {
+          controller: 'rating',
+          action: 'create',
+          track_id: track.id,
+          score: score,
+        }, form_class: 'form-inline' %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

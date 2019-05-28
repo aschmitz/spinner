@@ -3,15 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .queue {
-    background-color: #eee;
+    list-style: none;
+    padding-left: 0;
 }
 
 .queue-entry {
-    padding: 4px 0;
+    margin: 8px;
+    display: flex; 
+    align-items: center;
+}
+
+.queue-entry__track-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2; 
+}
+
+.queue-entry__track-title {
+
+}
+
+.queue-entry__track-details {
+    font-size: 0.8rem;
+}
+
+.queue-entry__track-details a {
+    color: #595959; 
 }
 
 .queue-entry-action {
-    background-color: #ccc;
     display: inline-block;
     font-size: 125%;
     text-decoration: none;
@@ -19,11 +40,12 @@
 
 .queue-entry-action:hover {
     cursor: pointer;
-    background-color: #aaa;
+    background-color: #aaa; 
 }
 
 .queue-entry-art {
-    height: 1.5em; 
+    height: 2rem;
+    margin: 0 1rem;
     width: auto;
     margin-top: 4px;
     vertical-align: bottom;
