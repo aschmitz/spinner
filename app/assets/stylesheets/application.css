@@ -16,7 +16,6 @@
 
 body {
   margin: 0;
-  padding: 0.5em;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -66,4 +65,61 @@ time {
 
 #toast.error {
   background-color: #d44;
+}
+
+
+
+
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+}
+.homepage > div > div {
+  max-width: 960px;
+  margin: auto;
+}
+@media screen and (max-width: 1020px) {
+  .homepage > div > div {
+    max-width: auto;
+    margin: 0 2vw;
+  }
+}
+.now-playing-container {
+  background-color: #eee;
+}
+.now-playing h1,
+.search h1 {
+  font-size: 1rem;
+  color: #444; 
+}
+.your-queue h1 {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+
+
+
+#now_playing {
+  display: flex;
+}
+
+.now-playing__track-title-line {
+  font-size: 1.4rem;
+}
+@media screen and (max-width: 1020px) {
+  .now-playing__track-title-line {
+    font-size: 1.2rem;
+  }
+}
+
+.now-playing__track-info-line a {
+  color: #595959;
+}
+
+.now-playing__album-cover {
+  height: 128px;
+  margin: 0 8px;
 }

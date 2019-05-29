@@ -1,30 +1,48 @@
-<h1>Now Playing</h1>
-<p>(You can also see <%= link_to 'recent songs', action: 'recent' %>.)</p>
-<div id="now_playing">
-  <%= render partial: 'nowplaying' %>
+<div class="homepage">
+  <div class="now-playing-container">
+    <div class="now-playing">
+      <h1>Now Playing</h1>
+      <div id="now_playing">
+        <%= render partial: 'nowplaying' %>
+      </div>
+      <p>(You can also see <%= link_to 'recent songs', action: 'recent' %>.)</p>
+    </div>
+  </div>
+
+  <div class="your-queue-container">
+    <div class="your-queue">
+      <h1>Your Queue</h1>
+      <div id="your_queue">
+        <%= render partial: 'queue' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <div class="search">
+      <h1>Search</h1>
+      <%= form_tag '/search', {method: 'GET'} do %>
+        <%= text_field_tag 'q' %>
+        <%= submit_tag 'Search' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="user-info-container">
+    <div class="user-info">
+      <% if current_user.in_room %>
+        <h2>Not listening any more?</h2>
+        You can
+        <%= link_to 'mark yourself as gone', {action: 'presence', in_room: false}, method: :post %>
+        to not have your queue play.
+      <% else %>
+        <h2>Listening again?</h2>
+        You can
+        <%= link_to 'mark yourself as around', {action: 'presence', in_room: true}, method: :post %>
+        to have your queue start playing again.
+      <% end %>
+      <br />
+      <%= link_to 'Edit account', edit_user_registration_path %>
+    </div>
+  </div>
 </div>
-
-<h1>Your Queue</h1>
-<div id="your_queue">
-  <%= render partial: 'queue' %>
-</div>
-
-<h1>Search</h1>
-<%= form_tag '/search', {method: 'GET'} do %>
-  <%= text_field_tag 'q' %>
-  <%= submit_tag 'Search' %>
-<% end %>
-
-<% if current_user.in_room %>
-  <h2>Not listening any more?</h2>
-  You can
-  <%= link_to 'mark yourself as gone', {action: 'presence', in_room: false}, method: :post %>
-  to not have your queue play.
-<% else %>
-  <h2>Listening again?</h2>
-  You can
-  <%= link_to 'mark yourself as around', {action: 'presence', in_room: true}, method: :post %>
-  to have your queue start playing again.
-<% end %>
-<br />
-<%= link_to 'Edit account', edit_user_registration_path %>
