@@ -75,12 +75,12 @@ time {
   display: flex;
   flex-direction: column;
 }
-.homepage > * > * {
+.homepage > div > div {
   max-width: 960px;
   margin: auto;
 }
 @media screen and (max-width: 1020px) {
-  .homepage > * > * {
+  .homepage > div > div {
     max-width: auto;
     margin: 0 2vw;
   }
