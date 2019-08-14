@@ -1,13 +1,17 @@
 <%= content_for(:title, 'Browse Artist') %>
-<h1>Browse Artist</h1>
+<div class="browse-container">
+  <div>
+  <h1>Browse Artist</h1>
 
-<h2>Albums</h2>
-<ul>
-  <% @albums.each do |album|
-    next if album['uri'][-4..-1] == ':all' %>
-    <li><%= link_to album['name'], action: 'album', id: album['uri'] %></li>
-  <% end %>
-</ul>
-<div>
-  <%= link_to 'Home', root_path %>
+  <h2>Albums</h2>
+  <ul>
+    <% @albums.each do |album|
+      next if album['uri'][-4..-1] == ':all' %>
+      <li><%= link_to album['name'], action: 'album', id: album['uri'] %></li>
+    <% end %>
+  </ul>
+  <div>
+    <%= link_to 'Home', root_path %>
+  </div>
+  </div>
 </div>

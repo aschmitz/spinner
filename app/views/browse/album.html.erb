@@ -1,27 +1,31 @@
 <% content_for(:title, "Album: #{@album['name']}") %>
-<h1>Album: <i><%= @album['name'] %></i></h1>
+<div class="browse-container">
+  <div>
+  <h1>Album: <i><%= @album['name'] %></i></h1>
 
-<% if @album['images'] %>
-  <%= image_tag @album['images'].first, style: 'width: 256px; height: auto;' %>
-<% end %>
+  <% if @album['images'] %>
+    <%= image_tag @album['images'].first, style: 'width: 256px; height: auto;' %>
+  <% end %>
 
-<div>
-  If you want, you can also queue this entire album: 
-  <%= button_to 'Queue Album', {
-      controller: 'queue_entry',
-      action: 'create',
-      album_uri: @album['uri'],
-    },
-    remote: true,
-    form_class: 'form-inline',
-    data: { confirm: "Do you want to queue the entire \"#{@album['name']}\" album?"}
-  %>
-</div>
+  <div>
+    If you want, you can also queue this entire album: 
+    <%= button_to 'Queue Album', {
+        controller: 'queue_entry',
+        action: 'create',
+        album_uri: @album['uri'],
+      },
+      remote: true,
+      form_class: 'form-inline',
+      data: { confirm: "Do you want to queue the entire \"#{@album['name']}\" album?"}
+    %>
+  </div>
 
-<h2>Tracks</h2>
-<ul>
-  <%= render partial: 'track', collection: @tracks %>
-</ul>
-<div>
-  <%= link_to 'Home', root_path %>
+  <h2>Tracks</h2>
+  <ul>
+    <%= render partial: 'track', collection: @tracks %>
+  </ul>
+  <div>
+    <%= link_to 'Home', root_path %>
+  </div>
+  <div>
 </div>

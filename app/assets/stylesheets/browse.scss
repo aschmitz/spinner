@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.search-container {
-    margin: 2em;
+.browse-container {
+    margin: 1em;
+}
+
+.browse-container ul {
+    padding: 0;
+    list-style: none;
+}
+
+.browse-container ul > li {
+    margin: .25em 0;
 }
