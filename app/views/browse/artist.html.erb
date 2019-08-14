@@ -4,7 +4,7 @@
   <h1>Browse Artist</h1>
 
   <h2>Albums</h2>
-  <ul>
+  <ul class="decorated">
     <% @albums.each do |album|
       next if album['uri'][-4..-1] == ':all' %>
       <li><%= link_to album['name'], action: 'album', id: album['uri'] %></li>

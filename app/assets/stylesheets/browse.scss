@@ -3,12 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .browse-container {
-    margin: 1em;
+    margin: 1.5em;
 }
 
 .browse-container ul {
     padding: 0;
+    padding-left: 2em; 
     list-style: none;
+}
+
+.browse-container ul.decorated {
+    list-style: disc;
 }
 
 .browse-container ul > li {
