@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/search' => 'browse#search'
   get '/artist' => 'browse#artist'
   get '/album' => 'browse#album'
+  get '/top_tracks' => 'browse#top_tracks'
   
   resources :library_track
   resources :queue_entry

@@ -3,6 +3,10 @@
   <div>
   <h1>Browse Artist</h1>
 
+  <% if @top_tracks %>
+    <%= link_to 'Top Tracks', action: 'top_tracks', id: @top_tracks['uri'] %>
+  <% end %>
+
   <h2>Albums</h2>
   <ul class="decorated">
     <% @albums.each do |album|

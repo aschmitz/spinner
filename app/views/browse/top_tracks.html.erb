@@ -1,0 +1,27 @@
+<% content_for(:title, "Top Tracks") %>
+<div class="browse-container">
+  <div>
+  <h1>Top Tracks</h1>
+
+  <div>
+    If you want, you can also queue all of their top tracks: 
+    <%= button_to 'Queue All', {
+        controller: 'queue_entry',
+        action: 'create',
+        uri: @all_tracks_uri,
+      },
+      remote: true,
+      form_class: 'form-inline',
+      data: { confirm: "Do you want to queue all of the top tracks?"}
+    %>
+  </div>
+
+  <h2>Tracks</h2>
+  <ul>
+    <%= render partial: 'track', collection: @tracks %>
+  </ul>
+  <div>
+    <%= link_to 'Home', root_path %>
+  </div>
+  <div>
+</div>

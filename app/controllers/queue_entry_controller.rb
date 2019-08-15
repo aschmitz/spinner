@@ -17,7 +17,7 @@ class QueueEntryController < ApplicationController
           track = Track.from_uri(track_uri)
           queue_track(track)
         end
-        render plain: "ok queued " + uri.length
+        render plain: "ok queued #{uri.length}"
         return #I don't like that this return has to be here, but its nice to print the count back?
       #Otherwise we do the classic single song queue
       else
