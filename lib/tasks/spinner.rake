@@ -59,6 +59,7 @@ namespace :spinner do
                 # Tell everyone the current song playing changed.
                 ActionCable.server.broadcast('room_channel', {
                   event: 'nowplaying_change',
+                  track: qe.track.to_json() 
                 })
               end
             end
