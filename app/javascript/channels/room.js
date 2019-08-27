@@ -6,9 +6,11 @@ function notifySongChange(track){
   }
   if(Notification.permission == "granted"){
     let notification = new Notification("Now Playing", {
-      body:  `${track.title} - ${track.details.album.name}`,
-      tag: track.uri,
+      body:  `${track.title} - ${track.details.artists[0].name}\n${track.details.album.name}`,
+      tag: "nowplaying_change",
       icon: track.details.album.images[0],
+      renotify: true,
+      silent: true,
     });
   }
 }
