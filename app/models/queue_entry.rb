@@ -83,7 +83,7 @@ class QueueEntry < ApplicationRecord
       return self.tlid if MopidyClient.instance.invoke('core.tracklist.index', [nil, self.tlid])
     end
     
-    res = MopidyClient.instance.invoke('core.tracklist.add', [nil, nil, nil, [[self.track.uri]]]).first
+    res = MopidyClient.instance.invoke('core.tracklist.add', [nil, nil, [self.track.uri]]).first
     unless res['__model__'] == 'TlTrack'
       raise 'Unexpected response type: '+res['__model__']
     end
