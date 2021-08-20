@@ -6,7 +6,7 @@ class BrowseController < ApplicationController
     
     batches = MopidyClient.instance.invoke('core.library.search', [
       {'any' => [query]},
-      ['gmusic:']
+      ['spotify:']
     ])
     
     @artists = []
