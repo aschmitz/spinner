@@ -7,9 +7,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 6.1'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '< 6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,7 +46,6 @@ group :development, :test do
   gem 'sqlite3'
   
   # Use Capistrano for deployment
-  gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-systemd-multiservice', require: false # For the daemon
