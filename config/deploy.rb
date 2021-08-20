@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.11.0'
+lock '3.16.0'
 
 set :application, 'spinner'
 set :repo_url, 'https://github.com/aschmitz/spinner'
@@ -9,6 +9,9 @@ set :branch, ENV.fetch('GIT_BRANCH', 'master')
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/spinner'
+
+set :puma_bind, 'tcp://127.0.0.1:8080'
+set :puma_threads, [0,5]
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -24,7 +27,7 @@ set :deploy_to, '/var/www/spinner'
 append :linked_files, 'config/cable.yml',
   'config/database.yml',
   'config/secrets.yml',
-  'Passengerfile.json'
+  'config/storage.yml'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp', 'public/system', 'node_modules'
