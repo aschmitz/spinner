@@ -99,7 +99,7 @@ namespace :spinner do
               # Make sure it's in the queue. (This won't double-queue.)
               qe.add_to_mopidy!
               
-              MopidyClient.instance.invoke('core.playback.play', [nil, qe.tlid])
+              MopidyClient.instance.invoke('core.playback.play', {:tlid =>  qe.tlid})
             end
           end
         rescue Exception => e

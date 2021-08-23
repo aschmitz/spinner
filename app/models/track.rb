@@ -6,7 +6,7 @@ class Track < ApplicationRecord
   
   def self.from_uri(uri)
     where(uri: uri).first_or_create do |track|
-      details = MopidyClient.instance.invoke('core.library.lookup', [[uri]])
+      details = MopidyClient.instance.invoke('core.library.lookup', {:uris => [uri]})
       raise 'Could not find track' unless details.any?
       details = details.values.first.first
       

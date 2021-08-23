@@ -80,10 +80,10 @@ class QueueEntry < ApplicationRecord
     # Might we already be queued?
     if self.tlid
       # If we're already in the tracklist, just return.
-      return self.tlid if MopidyClient.instance.invoke('core.tracklist.index', [nil, self.tlid])
+      return self.tlid if MopidyClient.instance.invoke('core.tracklist.index', {:tlid => self.tlid})
     end
     
-    res = MopidyClient.instance.invoke('core.tracklist.add', [nil, nil, [self.track.uri]]).first
+    res = MopidyClient.instance.invoke('core.tracklist.add', {:uris => [self.track.uri]}).first
     unless res['__model__'] == 'TlTrack'
       raise 'Unexpected response type: '+res['__model__']
     end
@@ -97,7 +97,7 @@ class QueueEntry < ApplicationRecord
   def remove_from_mopidy!
     return false unless self.tlid
     
-    res = MopidyClient.instance.invoke('core.tracklist.remove', [{tlid: [self.tlid]}]).first
+    res = MopidyClient.instance.invoke('core.tracklist.remove', {:criteria => {:tlid => [self.tlid]} }).first
     return false unless res && res['__model__'] == 'TlTrack'
     
     self.tlid = nil
